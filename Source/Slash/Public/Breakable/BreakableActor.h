@@ -7,7 +7,9 @@
 #include "Interfaces/HitInterface.h"
 #include "BreakableActor.generated.h"
 
+class ATreasure;
 class UGeometryCollectionComponent;
+class UCapsuleComponent;
 
 UCLASS()
 class SLASH_API ABreakableActor : public AActor, public IHitInterface
@@ -23,9 +25,19 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TObjectPtr<UCapsuleComponent> Capsule;
+
 private:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UGeometryCollectionComponent> GeometryCollection;
 
+	UPROPERTY(EditAnywhere, Category = "Breakable Properties")
+	TArray<TSubclassOf<ATreasure>> TreasureClasses;
+
+	UFUNCTION()
+	void OnChaosBreak(const FChaosBreakEvent& BreakEvent);
+
+	bool bBroken = false;
 };
