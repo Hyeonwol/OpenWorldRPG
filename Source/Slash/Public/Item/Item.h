@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "NiagaraComponent.h"
 #include "Item.generated.h"
 
 class USphereComponent;
@@ -56,6 +57,9 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	//USphereComponent* Sphere;
 	TObjectPtr<USphereComponent> Sphere;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UNiagaraComponent> EmbersEffect;
 	
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))

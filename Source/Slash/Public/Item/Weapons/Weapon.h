@@ -21,7 +21,7 @@ class SLASH_API AWeapon : public AItem
 public:
 	AWeapon();
 	void AttachMeshToSocket(USceneComponent* InParent, const FName& InSocketName) const;
-	void Equip(USceneComponent* InParent, FName InSocketName);
+	void Equip(USceneComponent* InParent, FName InSocketName, AActor* NewOwner, APawn* NewInstigator);
 	
 	TArray<TObjectPtr<AActor>> IgnoreActors;
 protected:
@@ -52,7 +52,8 @@ private:
 	//USceneComponent* BoxTraceEnd;
 	TObjectPtr<USceneComponent> BoxTraceEnd;
 
-	
+	UPROPERTY(EditAnywhere, Category = "Weapon Properties")
+	float Damage = 20.f;
 
 public:
 	FORCEINLINE UBoxComponent* GetWeaponBox() const {return WeaponBox; }

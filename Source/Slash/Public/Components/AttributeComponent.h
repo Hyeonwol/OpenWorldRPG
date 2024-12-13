@@ -22,9 +22,15 @@ protected:
 private:
 	//현재 HP
 	UPROPERTY(EditAnywhere, Category="ActorAttributes")
-	float Health;
+	float Health = 100.f;
 
 	//최대 HP
 	UPROPERTY(EditAnywhere, Category="ActorAttributes")
-	float MaxHealth;
+	float MaxHealth = 100.f;
+
+public:
+	void ReceiveDamage(float Damage);
+	float GetHealthPercent() const;
+
+	bool IsAlive() const;
 };
